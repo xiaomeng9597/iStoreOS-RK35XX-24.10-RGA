@@ -242,6 +242,28 @@
 		regulator-boot-on;
 	};
 
+	vdd_venc: vdd-venc {
+		compatible = "regulator-fixed";
+		regulator-name = "venc-vdd";
+		regulator-min-microvolt = <900000>;
+		regulator-max-microvolt = <900000>;
+		regulator-enable-ramp-delay = <300>;
+		regulator-ramp-delay = <8000>;
+		regulator-always-on;
+		regulator-boot-on;
+	};
+
+	vdd_vdec: vdd-vdec {
+		compatible = "regulator-fixed";
+		regulator-name = "vdec-vdd";
+		regulator-min-microvolt = <900000>;
+		regulator-max-microvolt = <900000>;
+		regulator-enable-ramp-delay = <300>;
+		regulator-ramp-delay = <8000>;
+		regulator-always-on;
+		regulator-boot-on;
+	};
+
 	vdd_cpu: vdd-cpu {
 		compatible = "pwm-regulator";
 		rockchip,pwm_id = <0>;
@@ -380,6 +402,23 @@
 
 		regulators {
 
+/*
+			vdd_logic: DCDC_REG1 {
+				regulator-always-on;
+				regulator-boot-on;
+				regulator-min-microvolt = <500000>;
+				regulator-max-microvolt = <1350000>;
+				regulator-init-microvolt = <900000>;
+				regulator-ramp-delay = <6001>;
+				regulator-initial-mode = <2>;
+				regulator-name = "vdd_logic";
+
+				regulator-state-mem {
+					regulator-off-in-suspend;
+				};
+			};
+*/
+
 			vdd_gpu: DCDC_REG2 {
 				regulator-always-on;
 				regulator-boot-on;
@@ -411,7 +450,7 @@
 				regulator-boot-on;
 				regulator-min-microvolt = <500000>;
 				regulator-max-microvolt = <1350000>;
-				regulator-init-microvolt = <1000000>;
+				regulator-init-microvolt = <900000>;
 				regulator-ramp-delay = <6001>;
 				regulator-initial-mode = <2>;
 				regulator-name = "vdd_npu";
@@ -919,6 +958,26 @@
 	status = "okay";
 };
 
+&rkvdec {
+    status = "okay";
+    vdec-supply = <&vdd_vdec>;
+	
+	/* 补全复位信号名称 */
+	resets = <&cru SRST_A_RKVDEC>, <&cru SRST_H_RKVDEC>,
+			 <&cru SRST_RKVDEC_CA>, <&cru SRST_RKVDEC_CORE>,
+			 <&cru SRST_RKVDEC_HEVC_CA>,
+			 <&cru SRST_A_VPU_NIU>, <&cru SRST_H_VPU_NIU>;
+	
+	reset-names = "video_a", "video_h", "video_cabac",
+				  "video_core", "video_hevc_cabac",
+				  "shared_niu_a", "shared_niu_h";
+};
+
+&rkvenc {
+	status = "okay";
+	venc-supply = <&vdd_venc>;
+};
+
 //sdhci@fe310000
 &sdhci {
 	max-frequency = <200000000>;
@@ -1038,42 +1097,4 @@
 &saradc {
 	status = "okay";
 	vref-supply = <&vcc1v8_adc>;
-};
-
-/* ========================================================== */
-/* 强力修复：解决电源标签不存在导致的 -517 报错                */
-/* ========================================================== */
-
-/ {
-    /* 这里的 vdd_logic 是标签(Label)，方便你在下方通过 &vdd_logic 引用 */
-    /* 这里的 vdd-logic 是节点名，必须唯一 */
-    vdd_logic: vdd-logic {
-        regulator-name = "vdd_logic"; // 内核里看到的名称
-        regulator-always-on;
-        regulator-boot-on;
-        regulator-min-microvolt = <900000>;
-        regulator-max-microvolt = <900000>;
-    };
-};
-
-/* 2. 修改各硬件节点引用该虚拟电源 */
-
-&rkvdec {
-    status = "okay";
-    vdec-supply = <&vdd_logic>;
-	
-	/* 补全复位信号名称 */
-	resets = <&cru SRST_A_RKVDEC>, <&cru SRST_H_RKVDEC>,
-			 <&cru SRST_RKVDEC_CA>, <&cru SRST_RKVDEC_CORE>,
-			 <&cru SRST_RKVDEC_HEVC_CA>,
-			 <&cru SRST_A_VPU_NIU>, <&cru SRST_H_VPU_NIU>;
-	
-	reset-names = "video_a", "video_h", "video_cabac",
-				  "video_core", "video_hevc_cabac",
-				  "shared_niu_a", "shared_niu_h";
-};
-
-&rkvenc {
-	status = "okay";
-	venc-supply = <&vdd_logic>; /* 修改此处 */
 };
