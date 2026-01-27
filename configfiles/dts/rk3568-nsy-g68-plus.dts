@@ -244,7 +244,7 @@
 
 	vdd_logic: vdd-logic {
 		compatible = "regulator-fixed";
-		regulator-name = "vdd-logic";
+		regulator-name = "vdd_logic";
 		regulator-min-microvolt = <500000>;
 		regulator-max-microvolt = <1350000>;
 		regulator-init-microvolt = <900000>;
@@ -256,7 +256,7 @@
 
 	vdd_npu: vdd-npu {
 		compatible = "regulator-fixed";
-		regulator-name = "vdec-vdd";
+		regulator-name = "vdd_npu";
 		regulator-min-microvolt = <500000>;
 		regulator-max-microvolt = <1350000>;
 		regulator-init-microvolt = <1000000>;
@@ -268,7 +268,7 @@
 
 	vdd_gpu: vdd-gpu {
 		compatible = "regulator-fixed";
-		regulator-name = "vdec-vdd";
+		regulator-name = "vdd_gpu";
 		regulator-min-microvolt = <500000>;
 		regulator-max-microvolt = <1350000>;
 		regulator-init-microvolt = <1000000>;
