@@ -727,6 +727,7 @@
 };
 
 &rknpu {
+	rknpu-supply = <&vdd_npu>;
 	status = "okay";
 };
 
