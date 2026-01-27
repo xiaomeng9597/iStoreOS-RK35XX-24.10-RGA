@@ -11,6 +11,7 @@
 #include <rockchip/rk3568.dtsi>
 #include "rk3568-ip.dtsi"
 #include "rk3568-ip-rk809.dtsi"
+#include "rk3568-vngpu.dtsi"
 #include "rk3568-ramoops.dtsi"
 
 / {
@@ -931,6 +932,26 @@
 
 &vop {
 	status = "okay";
+};
+
+&rkvdec {
+    status = "okay";
+    vdec-supply = <&vdd_logic>;
+	
+	/* 补全复位信号名称 */
+	resets = <&cru SRST_A_RKVDEC>, <&cru SRST_H_RKVDEC>,
+			 <&cru SRST_RKVDEC_CA>, <&cru SRST_RKVDEC_CORE>,
+			 <&cru SRST_RKVDEC_HEVC_CA>,
+			 <&cru SRST_A_VPU_NIU>, <&cru SRST_H_VPU_NIU>;
+	
+	reset-names = "video_a", "video_h", "video_cabac",
+				  "video_core", "video_hevc_cabac",
+				  "shared_niu_a", "shared_niu_h";
+};
+
+&rkvenc {
+	status = "okay";
+	venc-supply = <&vdd_logic>;
 };
 
 //sdhci@fe310000
