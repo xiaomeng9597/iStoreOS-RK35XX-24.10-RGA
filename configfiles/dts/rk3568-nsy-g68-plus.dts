@@ -402,7 +402,6 @@
 
 		regulators {
 
-/*
 			vdd_logic: DCDC_REG1 {
 				regulator-always-on;
 				regulator-boot-on;
@@ -417,7 +416,6 @@
 					regulator-off-in-suspend;
 				};
 			};
-*/
 
 			vdd_gpu: DCDC_REG2 {
 				regulator-always-on;
@@ -976,6 +974,12 @@
 &rkvenc {
 	status = "okay";
 	venc-supply = <&vdd_venc>;
+};
+
+&bus_npu {
+	bus-supply = <&vdd_vdec>;
+	pvtm-supply = <&vdd_cpu>;
+	status = "okay";
 };
 
 //sdhci@fe310000
