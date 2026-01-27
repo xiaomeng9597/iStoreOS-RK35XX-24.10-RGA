@@ -505,8 +505,8 @@
 		rockchip,taskqueue-node = <3>;
 		rockchip,resetgroup-node = <3>;
 		power-domains = <&power RK3568_PD_RKVENC>;
-		venc-supply = <&vdd_logic>;
 		//operating-points-v2 = <&rkvenc_opp_table>;
+		venc-supply = <&vdd_logic>;
 		status = "disabled";
 	};
 
