@@ -242,22 +242,36 @@
 		regulator-boot-on;
 	};
 
-	vdd_venc: vdd-venc {
+	vdd_logic: vdd-logic {
 		compatible = "regulator-fixed";
-		regulator-name = "venc-vdd";
-		regulator-min-microvolt = <900000>;
-		regulator-max-microvolt = <900000>;
+		regulator-name = "vdd-logic";
+		regulator-min-microvolt = <500000>;
+		regulator-max-microvolt = <1350000>;
+		regulator-init-microvolt = <900000>;
 		regulator-enable-ramp-delay = <300>;
 		regulator-ramp-delay = <8000>;
 		regulator-always-on;
 		regulator-boot-on;
 	};
 
-	vdd_vdec: vdd-vdec {
+	vdd_npu: vdd-npu {
 		compatible = "regulator-fixed";
 		regulator-name = "vdec-vdd";
-		regulator-min-microvolt = <900000>;
-		regulator-max-microvolt = <900000>;
+		regulator-min-microvolt = <500000>;
+		regulator-max-microvolt = <1350000>;
+		regulator-init-microvolt = <1000000>;
+		regulator-enable-ramp-delay = <300>;
+		regulator-ramp-delay = <8000>;
+		regulator-always-on;
+		regulator-boot-on;
+	};
+
+	vdd_gpu: vdd-gpu {
+		compatible = "regulator-fixed";
+		regulator-name = "vdec-vdd";
+		regulator-min-microvolt = <500000>;
+		regulator-max-microvolt = <1350000>;
+		regulator-init-microvolt = <1000000>;
 		regulator-enable-ramp-delay = <300>;
 		regulator-ramp-delay = <8000>;
 		regulator-always-on;
@@ -402,36 +416,6 @@
 
 		regulators {
 
-			vdd_logic: DCDC_REG1 {
-				regulator-always-on;
-				regulator-boot-on;
-				regulator-min-microvolt = <500000>;
-				regulator-max-microvolt = <1350000>;
-				regulator-init-microvolt = <900000>;
-				regulator-ramp-delay = <6001>;
-				regulator-initial-mode = <2>;
-				regulator-name = "vdd_logic";
-
-				regulator-state-mem {
-					regulator-off-in-suspend;
-				};
-			};
-
-			vdd_gpu: DCDC_REG2 {
-				regulator-always-on;
-				regulator-boot-on;
-				regulator-min-microvolt = <500000>;
-				regulator-max-microvolt = <1350000>;
-				regulator-init-microvolt = <1000000>;
-				regulator-ramp-delay = <6001>;
-				regulator-initial-mode = <2>;
-				regulator-name = "vdd_gpu";
-
-				regulator-state-mem {
-					regulator-off-in-suspend;
-				};
-			};
-
 			vcc_ddr: DCDC_REG3 {
 				regulator-always-on;
 				regulator-boot-on;
@@ -440,21 +424,6 @@
 
 				regulator-state-mem {
 					regulator-on-in-suspend;
-				};
-			};
-
-			vdd_npu: DCDC_REG4 {
-				regulator-always-on;
-				regulator-boot-on;
-				regulator-min-microvolt = <500000>;
-				regulator-max-microvolt = <1350000>;
-				regulator-init-microvolt = <900000>;
-				regulator-ramp-delay = <6001>;
-				regulator-initial-mode = <2>;
-				regulator-name = "vdd_npu";
-
-				regulator-state-mem {
-					regulator-off-in-suspend;
 				};
 			};
 
@@ -958,7 +927,7 @@
 
 &rkvdec {
     status = "okay";
-    vdec-supply = <&vdd_vdec>;
+    vdec-supply = <&vdd_logic>;
 	
 	/* 补全复位信号名称 */
 	resets = <&cru SRST_A_RKVDEC>, <&cru SRST_H_RKVDEC>,
@@ -973,13 +942,7 @@
 
 &rkvenc {
 	status = "okay";
-	venc-supply = <&vdd_venc>;
-};
-
-&bus_npu {
-	bus-supply = <&vdd_vdec>;
-	pvtm-supply = <&vdd_cpu>;
-	status = "okay";
+	venc-supply = <&vdd_logic>;
 };
 
 //sdhci@fe310000

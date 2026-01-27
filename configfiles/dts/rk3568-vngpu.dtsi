@@ -733,3 +733,9 @@
 &rknpu_mmu {
     status = "okay";
 };
+
+&bus_npu {
+	bus-supply = <&vdd_logic>;
+	pvtm-supply = <&vdd_cpu>;
+	status = "okay";
+};
