@@ -242,6 +242,48 @@
 		regulator-boot-on;
 	};
 
+	vdd_logic: vdd-logic {
+		compatible = "regulator-fixed";
+		regulator-name = "vdd_logic";
+		regulator-type = "voltage";
+		regulator-min-microvolt = <500000>;
+		regulator-max-microvolt = <1350000>;
+		regulator-init-microvolt = <900000>;
+		regulator-enable-ramp-delay = <300>;
+		regulator-ramp-delay = <8000>;
+		regulator-always-on;
+		regulator-boot-on;
+		vin-supply = <&vcc3v3_sys>;
+	};
+
+	vdd_npu: vdd-npu {
+		compatible = "regulator-fixed";
+		regulator-name = "vdd_npu";
+		regulator-type = "voltage";
+		regulator-min-microvolt = <500000>;
+		regulator-max-microvolt = <1350000>;
+		regulator-init-microvolt = <900000>;
+		regulator-enable-ramp-delay = <300>;
+		regulator-ramp-delay = <8000>;
+		regulator-always-on;
+		regulator-boot-on;
+		vin-supply = <&vcc3v3_sys>;
+	};
+
+	vdd_gpu: vdd-gpu {
+		compatible = "regulator-fixed";
+		regulator-name = "vdd_gpu";
+		regulator-type = "voltage";
+		regulator-min-microvolt = <500000>;
+		regulator-max-microvolt = <1350000>;
+		regulator-init-microvolt = <1000000>;
+		regulator-enable-ramp-delay = <300>;
+		regulator-ramp-delay = <8000>;
+		regulator-always-on;
+		regulator-boot-on;
+		vin-supply = <&vcc3v3_sys>;
+	};
+
 	vdd_cpu: vdd-cpu {
 		compatible = "pwm-regulator";
 		rockchip,pwm_id = <0>;
@@ -380,36 +422,6 @@
 
 		regulators {
 
-			vdd_logic: DCDC_REG1 {
-				regulator-always-on;
-				regulator-boot-on;
-				regulator-min-microvolt = <500000>;
-				regulator-max-microvolt = <900000>;
-				regulator-init-microvolt = <900000>;
-				regulator-ramp-delay = <6001>;
-				regulator-initial-mode = <2>;
-				regulator-name = "vdd_logic";
-
-				regulator-state-mem {
-					regulator-off-in-suspend;
-				};
-			};
-
-			vdd_gpu: DCDC_REG2 {
-				regulator-always-on;
-				regulator-boot-on;
-				regulator-min-microvolt = <500000>;
-				regulator-max-microvolt = <1350000>;
-				regulator-init-microvolt = <900000>;
-				regulator-ramp-delay = <6001>;
-				regulator-initial-mode = <2>;
-				regulator-name = "vdd_gpu";
-
-				regulator-state-mem {
-					regulator-off-in-suspend;
-				};
-			};
-
 			vcc_ddr: DCDC_REG3 {
 				regulator-always-on;
 				regulator-boot-on;
@@ -418,21 +430,6 @@
 
 				regulator-state-mem {
 					regulator-on-in-suspend;
-				};
-			};
-
-			vdd_npu: DCDC_REG4 {
-				regulator-always-on;
-				regulator-boot-on;
-				regulator-min-microvolt = <500000>;
-				regulator-max-microvolt = <1350000>;
-				regulator-init-microvolt = <900000>;
-				regulator-ramp-delay = <6001>;
-				regulator-initial-mode = <2>;
-				regulator-name = "vdd_npu";
-
-				regulator-state-mem {
-					regulator-off-in-suspend;
 				};
 			};
 
