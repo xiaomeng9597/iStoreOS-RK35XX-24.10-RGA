@@ -958,6 +958,7 @@ rkvdec_opp_table: rkvdec-opp-table {
      >;
      rockchip,pvtm-ch = <0 5>;
      opp-regulator-compatible = "regulator-fixed";
+     rockchip,skip-pvtpll;
      opp-297000000 {
          opp-hz = /bits/ 64 <297000000>;
          opp-microvolt = <900000>;
@@ -987,6 +988,7 @@ rkvenc_opp_table: rkvenc-opp-table {
      >;
      rockchip,pvtm-ch = <0 5>;
      opp-regulator-compatible = "regulator-fixed";
+     rockchip,skip-pvtpll;
      opp-297000000 {
          opp-hz = /bits/ 64 <297000000>;
          opp-microvolt = <900000>;
@@ -1033,6 +1035,7 @@ npu_opp_table: npu-opp-table {
      rockchip,pvtm-ch = <0 5>;
      rockchip,init-freq = <900000>;
      opp-regulator-compatible = "regulator-fixed";
+     rockchip,skip-pvtpll;
      /* RK3568 && RK3568M npu OPPs */
      opp-200000000 {
          opp-supported-hw = <0xfb 0xffff>;
