@@ -243,39 +243,48 @@
 	};
 
 	vdd_logic: vdd-logic {
-		compatible = "regulator-fixed";
+		compatible = "regulator-virtual";
 		regulator-name = "vdd_logic";
-		regulator-min-microvolt = <900000>;
-		regulator-max-microvolt = <900000>;
+		regulator-type = "voltage";
+		regulator-min-microvolt = <500000>;
+		regulator-max-microvolt = <1350000>;
+		regulator-init-microvolt = <900000>;
 		regulator-enable-ramp-delay = <300>;
 		regulator-ramp-delay = <8000>;
 		regulator-always-on;
 		regulator-boot-on;
 		vin-supply = <&vcc3v3_sys>;
+		regulator-dynamic-mode;
 	};
 
 	vdd_npu: vdd-npu {
-		compatible = "regulator-fixed";
+		compatible = "regulator-virtual";
 		regulator-name = "vdd_npu";
-		regulator-min-microvolt = <900000>;
-		regulator-max-microvolt = <900000>;
+		regulator-type = "voltage";
+		regulator-min-microvolt = <500000>;
+		regulator-max-microvolt = <1350000>;
+		regulator-init-microvolt = <900000>;
 		regulator-enable-ramp-delay = <300>;
 		regulator-ramp-delay = <8000>;
 		regulator-always-on;
 		regulator-boot-on;
 		vin-supply = <&vcc3v3_sys>;
+		regulator-dynamic-mode;
 	};
 
 	vdd_gpu: vdd-gpu {
-		compatible = "regulator-fixed";
+		compatible = "regulator-virtual";
 		regulator-name = "vdd_gpu";
-		regulator-min-microvolt = <900000>;
-		regulator-max-microvolt = <900000>;
+		regulator-type = "voltage";
+		regulator-min-microvolt = <500000>;
+		regulator-max-microvolt = <1350000>;
+		regulator-init-microvolt = <1000000>;
 		regulator-enable-ramp-delay = <300>;
 		regulator-ramp-delay = <8000>;
 		regulator-always-on;
 		regulator-boot-on;
 		vin-supply = <&vcc3v3_sys>;
+		regulator-dynamic-mode;
 	};
 
 	vdd_cpu: vdd-cpu {
@@ -927,6 +936,7 @@
 
 &rkvdec {
     status = "okay";
+    operating-points-v2 = <&rkvdec_opp_table>;
     vdec-supply = <&vdd_logic>;
 	
 	/* 补全复位信号名称 */
@@ -942,6 +952,7 @@
 
 &rkvenc {
 	status = "okay";
+	operating-points-v2 = <&rkvenc_opp_table>;
 	venc-supply = <&vdd_logic>;
 };
 
