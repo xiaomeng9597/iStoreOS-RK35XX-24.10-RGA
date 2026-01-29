@@ -367,7 +367,6 @@
 		rockchip,temp-hysteresis = <5000>;
 		rockchip,low-temp = <0>;
 		rockchip,low-temp-adjust-volt = <0 800 50000>;
-		rockchip,pvtm-ch = <0 5>;
 		opp-regulator-compatible = "regulator-fixed";
 		rockchip,skip-pvtpll;
 		opp-200000000 {
@@ -407,7 +406,6 @@
 		nvmem-cells = <&log_leakage>, <&core_pvtm>;
 		nvmem-cell-names = "leakage", "pvtm";
 		rockchip,leakage-voltage-sel = <1 80 0 81 254 1>;
-		rockchip,pvtm-ch = <0 5>;
 		opp-regulator-compatible = "regulator-fixed";
 		rockchip,skip-pvtpll;
 		opp-297000000 {
@@ -424,7 +422,6 @@
 		compatible = "operating-points-v2";
 		nvmem-cells = <&core_pvtm>;
 		nvmem-cell-names = "pvtm";
-		rockchip,pvtm-ch = <0 5>;
 		opp-regulator-compatible = "regulator-fixed";
 		rockchip,skip-pvtpll;
 		opp-297000000 {
@@ -447,7 +444,6 @@
 		rockchip,temp-hysteresis = <5000>;
 		rockchip,low-temp = <0>;
 		rockchip,low-temp-adjust-volt = <0 1000 50000>;
-		rockchip,pvtm-ch = <0 5>;
 		rockchip,init-freq = <900000>;
 		opp-regulator-compatible = "regulator-fixed";
 		rockchip,skip-pvtpll;
@@ -499,7 +495,6 @@
 		opp-shared;
 		nvmem-cells = <&core_pvtm>;
 		nvmem-cell-names = "pvtm";
-		rockchip,pvtm-ch = <0 5>;
 		opp-regulator-compatible = "regulator-fixed";
 		rockchip,skip-pvtpll;
 		opp-700000000 {
