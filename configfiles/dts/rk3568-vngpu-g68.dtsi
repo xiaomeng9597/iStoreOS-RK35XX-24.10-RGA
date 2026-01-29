@@ -139,7 +139,7 @@
 
 		status = "disabled";
 		gpu_power_model: power-model {
-			compatible = "simple-power-model";
+			compatible = "arm,mali-simple-power-model";
 			leakage-range= <5 15>;
 			ls = <(-24002) 22823 0>;
 			static-coefficient = <100000>;
