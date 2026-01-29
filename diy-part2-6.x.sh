@@ -17,9 +17,10 @@ cp -a $GITHUB_WORKSPACE/configfiles/etc/* package/base-files/files/etc/
 # ls package/base-files/files/etc/
 
 
-# 追加binder内核参数
+# 追加自定义内核配置项
 echo "CONFIG_PSI=y
 CONFIG_KPROBES=y" >> target/linux/rockchip/armv8/config-6.6
+cat "${GITHUB_WORKSPACE}/configfiles/config-6.6.local" >> openwrt/target/linux/rockchip/armv8/config-6.6
 
 
 # 集成CPU性能跑分脚本
