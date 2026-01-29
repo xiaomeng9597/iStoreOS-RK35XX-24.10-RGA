@@ -26,7 +26,8 @@ CONFIG_PACKAGE_default-settings=y" >> .config
 
 # 追加自定义内核配置项
 echo "CONFIG_PSI=y
-CONFIG_KPROBES=y" >> target/linux/x86/64/config-6.6
+CONFIG_KPROBES=y
+CONFIG_ROCKCHIP_CLK_PVTPLL=y" >> target/linux/x86/64/config-6.6
 
 
 # 集成CPU性能跑分脚本
