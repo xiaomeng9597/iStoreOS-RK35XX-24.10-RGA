@@ -246,6 +246,7 @@
 		compatible = "pwm-regulator";
 		rockchip,pwm_id = <2>;
 		pwms = <&pwm2 0 25000 1>;
+		pwm-dutycycle-range = <0 100>;
 		regulator-name = "vdd_logic";
 		regulator-min-microvolt = <500000>;
 		regulator-max-microvolt = <1350000>;
@@ -260,6 +261,7 @@
 		compatible = "pwm-regulator";
 		rockchip,pwm_id = <1>;
 		pwms = <&pwm1 0 25000 1>;
+		pwm-dutycycle-range = <0 100>;
 		regulator-name = "vdd_npu";
 		regulator-min-microvolt = <500000>;
 		regulator-max-microvolt = <1350000>;
@@ -274,6 +276,7 @@
 		compatible = "pwm-regulator";
 		rockchip,pwm_id = <3>;
 		pwms = <&pwm3 0 25000 1>;
+		pwm-dutycycle-range = <0 100>;
 		regulator-name = "vdd_gpu";
 		regulator-min-microvolt = <500000>;
 		regulator-max-microvolt = <1350000>;
@@ -288,6 +291,7 @@
 		compatible = "pwm-regulator";
 		rockchip,pwm_id = <0>;
 		pwms = <&pwm0 0 25000 1>;
+		pwm-dutycycle-range = <0 100>;
 		regulator-name = "vdd_cpu";
 		regulator-min-microvolt = <800000>;
 		regulator-max-microvolt = <1400000>;
