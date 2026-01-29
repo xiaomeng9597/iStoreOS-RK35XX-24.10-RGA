@@ -357,6 +357,12 @@
 		status = "okay";
 	};
 
+/delete-node/ &gpu_opp_table;
+/delete-node/ &rkvdec_opp_table;
+/delete-node/ &rkvenc_opp_table;
+/delete-node/ &npu_opp_table;
+/delete-node/ &bus_npu_opp_table;
+
 	gpu_opp_table: opp-table-1 {
 		compatible = "operating-points-v2";
 		mbist-vmin = <825000 900000 950000>;
