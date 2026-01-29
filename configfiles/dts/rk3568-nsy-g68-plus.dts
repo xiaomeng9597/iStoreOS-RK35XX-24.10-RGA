@@ -277,9 +277,9 @@
 		rockchip,pwm_id = <3>;
 		pwms = <&pwm3 0 25000 1>;
 		regulator-name = "vdd_gpu";
-		regulator-min-microvolt = <900000>;
-		regulator-max-microvolt = <900000>;
-		regulator-init-microvolt = <900000>;
+		regulator-min-microvolt = <500000>;
+		regulator-max-microvolt = <1350000>;
+		regulator-init-microvolt = <1000000>;
 		regulator-enable-ramp-delay = <300>;
 		regulator-ramp-delay = <8000>;
 		regulator-always-on;
