@@ -917,7 +917,7 @@ gpu_opp_table: opp-table-1 {
      compatible = "operating-points-v2";
      mbist-vmin = <825000 900000 950000>;
      nvmem-cells = <&gpu_leakage>, <&core_pvtm>, <&mbist_vmin>, <&gpu_opp_info>, <&specification_serial_number>, <&remark_spec_serial_number>;
-     nvmem-cell-names = "leakage", "pvtm", "mbist-vmin", "opp-info","specification_serial_number", "remark_spec_serial_number";
+     nvmem-cell-names = "leakage", "pvtm", "mbist-vmin", "opp-info", "specification_serial_number", "remark_spec_serial_number";
      rockchip,supported-hw;
      rockchip,max-volt = <900000>;
      rockchip,temp-hysteresis = <5000>;
