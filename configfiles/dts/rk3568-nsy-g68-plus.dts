@@ -250,8 +250,7 @@
 		regulator-min-microvolt = <500000>;
 		regulator-max-microvolt = <1350000>;
 		regulator-init-microvolt = <900000>;
-		regulator-enable-ramp-delay = <300>;
-		regulator-ramp-delay = <8000>;
+		regulator-settling-time-up-us = <250>;
 		regulator-always-on;
 		regulator-boot-on;
 		vin-supply = <&vcc3v3_sys>;
@@ -265,8 +264,7 @@
 		regulator-min-microvolt = <500000>;
 		regulator-max-microvolt = <1350000>;
 		regulator-init-microvolt = <900000>;
-		regulator-enable-ramp-delay = <300>;
-		regulator-ramp-delay = <8000>;
+		regulator-settling-time-up-us = <250>;
 		regulator-always-on;
 		regulator-boot-on;
 		vin-supply = <&vcc3v3_sys>;
@@ -280,8 +278,7 @@
 		regulator-min-microvolt = <500000>;
 		regulator-max-microvolt = <1350000>;
 		regulator-init-microvolt = <1000000>;
-		regulator-enable-ramp-delay = <300>;
-		regulator-ramp-delay = <8000>;
+		regulator-settling-time-up-us = <250>;
 		regulator-always-on;
 		regulator-boot-on;
 		vin-supply = <&vcc3v3_sys>;
@@ -290,7 +287,6 @@
 	vdd_cpu: vdd-cpu {
 		compatible = "pwm-regulator";
 		rockchip,pwm_id = <0>;
-		rockchip,pwm_voltage = <900000>;
 		pwms = <&pwm0 0 25000 1>;
 		regulator-name = "vdd_cpu";
 		regulator-min-microvolt = <800000>;
