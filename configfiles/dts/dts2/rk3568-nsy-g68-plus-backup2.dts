@@ -12,7 +12,7 @@
 #include "rk3568-ip.dtsi"
 #include "rk3568-ip-rk809.dtsi"
 #include "rk3568-ramoops.dtsi"
-#include "rk3568-vngpu-g68.dtsi"
+#include "rk3568-vngpu.dtsi"
 
 / {
 	model = "NSY-G68 AX3000 Router";
@@ -355,6 +355,159 @@
 		//rgmii
 		realtek,extif2 = <0 0 1 1 1 1 1 1 2>;
 		status = "okay";
+	};
+
+	gpu_opp_table: opp-table-1 {
+		compatible = "operating-points-v2";
+		mbist-vmin = <825000 900000 950000>;
+		nvmem-cells = <&gpu_leakage>, <&mbist_vmin>, <&gpu_opp_info>, <&specification_serial_number>, <&remark_spec_serial_number>;
+		nvmem-cell-names = "leakage", "mbist-vmin", "opp-info", "specification_serial_number", "remark_spec_serial_number";
+		rockchip,supported-hw;
+		rockchip,max-volt = <900000>;
+		rockchip,temp-hysteresis = <5000>;
+		rockchip,low-temp = <0>;
+		rockchip,low-temp-adjust-volt = <0 800 50000>;
+		opp-regulator-compatible = "regulator-fixed";
+		rockchip,skip-pvtpll;
+		opp-200000000 {
+			opp-supported-hw = <0xfb 0xffff>;
+			opp-hz = /bits/ 64 <200000000>;
+			opp-microvolt = <900000>;
+		};
+		opp-300000000 {
+			opp-supported-hw = <0xfb 0xffff>;
+			opp-hz = /bits/ 64 <300000000>;
+			opp-microvolt = <900000>;
+		};
+		opp-400000000 {
+			opp-supported-hw = <0xfb 0xffff>;
+			opp-hz = /bits/ 64 <400000000>;
+			opp-microvolt = <900000>;
+		};
+		opp-600000000 {
+			opp-supported-hw = <0xfb 0xffff>;
+			opp-hz = /bits/ 64 <600000000>;
+			opp-microvolt = <900000>;
+		};
+		opp-700000000 {
+			opp-supported-hw = <0xfb 0xffff>;
+			opp-hz = /bits/ 64 <700000000>;
+			opp-microvolt = <900000>;
+		};
+		opp-800000000 {
+			opp-supported-hw = <0xf9 0xffff>;
+			opp-hz = /bits/ 64 <800000000>;
+			opp-microvolt = <900000>;
+		};
+	};
+
+	rkvdec_opp_table: rkvdec-opp-table {
+		compatible = "operating-points-v2";
+		nvmem-cells = <&log_leakage>;
+		nvmem-cell-names = "leakage";
+		opp-regulator-compatible = "regulator-fixed";
+		rockchip,skip-pvtpll;
+		opp-297000000 {
+			opp-hz = /bits/ 64 <297000000>;
+			opp-microvolt = <900000>;
+		};
+		opp-400000000 {
+			opp-hz = /bits/ 64 <400000000>;
+			opp-microvolt = <900000>;
+		};
+	};
+
+	rkvenc_opp_table: rkvenc-opp-table {
+		compatible = "operating-points-v2";
+		nvmem-cells = <&log_leakage>;
+		nvmem-cell-names = "leakage";
+		opp-regulator-compatible = "regulator-fixed";
+		rockchip,skip-pvtpll;
+		opp-297000000 {
+			opp-hz = /bits/ 64 <297000000>;
+			opp-microvolt = <900000>;
+		};
+		opp-400000000 {
+			opp-hz = /bits/ 64 <400000000>;
+			opp-microvolt = <900000>;
+		};
+	};
+
+	npu_opp_table: npu-opp-table {
+		compatible = "operating-points-v2";
+		mbist-vmin = <825000 900000 950000>;
+		nvmem-cells = <&npu_leakage>, <&mbist_vmin>, <&npu_opp_info>, <&specification_serial_number>, <&remark_spec_serial_number>;
+		nvmem-cell-names = "leakage", "mbist-vmin", "opp-info", "specification_serial_number", "remark_spec_serial_number";
+		rockchip,supported-hw;
+		rockchip,max-volt = <1000000>;
+		rockchip,temp-hysteresis = <5000>;
+		rockchip,low-temp = <0>;
+		rockchip,low-temp-adjust-volt = <0 1000 50000>;
+		rockchip,init-freq = <900000>;
+		opp-regulator-compatible = "regulator-fixed";
+		rockchip,skip-pvtpll;
+		opp-200000000 {
+			opp-supported-hw = <0xfb 0xffff>;
+			opp-hz = /bits/ 64 <200000000>;
+			opp-microvolt = <900000>;
+		};
+		opp-300000000 {
+			opp-supported-hw = <0xfb 0xffff>;
+			opp-hz = /bits/ 64 <297000000>;
+			opp-microvolt = <900000>;
+		};
+		opp-400000000 {
+			opp-supported-hw = <0xfb 0xffff>;
+			opp-hz = /bits/ 64 <400000000>;
+			opp-microvolt = <900000>;
+		};
+		opp-600000000 {
+			opp-supported-hw = <0xfb 0xffff>;
+			opp-hz = /bits/ 64 <600000000>;
+			opp-microvolt = <900000>;
+		};
+		opp-700000000 {
+			opp-supported-hw = <0xfb 0xffff>;
+			opp-hz = /bits/ 64 <700000000>;
+			opp-microvolt = <900000>;
+		};
+		opp-800000000 {
+			opp-supported-hw = <0xfb 0xffff>;
+			opp-hz = /bits/ 64 <800000000>;
+			opp-microvolt = <900000>;
+		};
+		opp-900000000 {
+			opp-supported-hw = <0xf9 0xffff>;
+			opp-hz = /bits/ 64 <900000000>;
+			opp-microvolt = <900000>;
+		};
+		opp-1000000000 {
+			opp-supported-hw = <0xf9 0xffff>;
+			opp-hz = /bits/ 64 <1000000000>;
+			opp-microvolt = <900000>;
+			status = "disabled";
+		};
+	};
+
+	bus_npu_opp_table: bus-npu-opp-table {
+		compatible = "operating-points-v2";
+		opp-shared;
+		nvmem-cells = <&log_leakage>;
+		nvmem-cell-names = "leakage";
+		opp-regulator-compatible = "regulator-fixed";
+		rockchip,skip-pvtpll;
+		opp-700000000 {
+			opp-hz = /bits/ 64 <700000000>;
+			opp-microvolt = <900000>;
+		};
+		opp-900000000 {
+			opp-hz = /bits/ 64 <900000000>;
+			opp-microvolt = <900000>;
+		};
+		opp-1000000000 {
+			opp-hz = /bits/ 64 <1000000000>;
+			opp-microvolt = <950000>;
+		};
 	};
 };
 
