@@ -231,17 +231,6 @@
 		vin-supply = <&vcc5v0_sys>;
 	};
 
-	vcc_camera: vcc-camera-regulator {
-		compatible = "regulator-fixed";
-		gpio = <&gpio0 RK_PC1 GPIO_ACTIVE_HIGH>;
-		pinctrl-names = "default";
-		pinctrl-0 = <&camera_pwr>;
-		regulator-name = "vcc_camera";
-		enable-active-high;
-		regulator-always-on;
-		regulator-boot-on;
-	};
-
 	vdd_logic: vdd-logic {
 		compatible = "pwm-regulator";
 		rockchip,pwm_id = <2>;
@@ -602,9 +591,6 @@
 		};
 		vcc3v3_vga_en: vcc3v3-vga-en {
 			rockchip,pins = <0 RK_PD5 RK_FUNC_GPIO &pcfg_pull_none>;
-		};
-		camera_pwr: camera-pwr {
-			rockchip,pins = <0 RK_PC1 RK_FUNC_GPIO &pcfg_pull_none>;
 		};
 		vcc3v3_pcie_en: vcc3v3-pcie-en {
 			rockchip,pins = <0 RK_PD4 RK_FUNC_GPIO &pcfg_pull_none>;
