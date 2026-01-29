@@ -899,19 +899,16 @@
 
 &pwm1 {
 	pinctrl-names = "default";
-	pinctrl-0 = <&pwm1m0_pins>;
 	status = "okay";
 };
 
 &pwm2 {
 	pinctrl-names = "default";
-	pinctrl-0 = <&pwm2m0_pins>;
 	status = "okay";
 };
 
 &pwm3 {
 	pinctrl-names = "default";
-	pinctrl-0 = <&pwm3m0_pins>;
 	status = "okay";
 };
 
