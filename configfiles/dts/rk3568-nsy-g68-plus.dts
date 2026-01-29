@@ -12,7 +12,7 @@
 #include "rk3568-ip.dtsi"
 #include "rk3568-ip-rk809.dtsi"
 #include "rk3568-ramoops.dtsi"
-#include "rk3568-vngpu-g68.dtsi"
+#include "rk3568-vngpu.dtsi"
 
 / {
 	model = "NSY-G68 AX3000 Router";
@@ -243,10 +243,12 @@
 	};
 
 	vdd_logic: vdd-logic {
-		compatible = "regulator-fixed";
+		compatible = "pwm-regulator";
+		rockchip,pwm_id = <2>;
+		pwms = <&pwm2 0 25000 1>;
 		regulator-name = "vdd_logic";
-		regulator-min-microvolt = <900000>;
-		regulator-max-microvolt = <900000>;
+		regulator-min-microvolt = <500000>;
+		regulator-max-microvolt = <1350000>;
 		regulator-init-microvolt = <900000>;
 		regulator-enable-ramp-delay = <300>;
 		regulator-ramp-delay = <8000>;
@@ -256,10 +258,12 @@
 	};
 
 	vdd_npu: vdd-npu {
-		compatible = "regulator-fixed";
+		compatible = "pwm-regulator";
+		rockchip,pwm_id = <1>;
+		pwms = <&pwm1 0 25000 1>;
 		regulator-name = "vdd_npu";
-		regulator-min-microvolt = <900000>;
-		regulator-max-microvolt = <900000>;
+		regulator-min-microvolt = <500000>;
+		regulator-max-microvolt = <1350000>;
 		regulator-init-microvolt = <900000>;
 		regulator-enable-ramp-delay = <300>;
 		regulator-ramp-delay = <8000>;
@@ -269,7 +273,9 @@
 	};
 
 	vdd_gpu: vdd-gpu {
-		compatible = "regulator-fixed";
+		compatible = "pwm-regulator";
+		rockchip,pwm_id = <3>;
+		pwms = <&pwm3 0 25000 1>;
 		regulator-name = "vdd_gpu";
 		regulator-min-microvolt = <900000>;
 		regulator-max-microvolt = <900000>;
@@ -892,15 +898,21 @@
 };
 
 &pwm1 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&pwm1m0_pins>;
 	status = "okay";
 };
 
 &pwm2 {
-	status = "disable";
+	pinctrl-names = "default";
+	pinctrl-0 = <&pwm2m0_pins>;
+	status = "okay";
 };
 
 &pwm3 {
-	status = "disable";
+	pinctrl-names = "default";
+	pinctrl-0 = <&pwm3m0_pins>;
+	status = "okay";
 };
 
 &power {
