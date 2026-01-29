@@ -85,6 +85,8 @@
 		rockchip,low-temp-adjust-volt = <0 800 50000>;
 		opp-regulator-compatible = "regulator-fixed";
 		rockchip,skip-pvtpll;
+		#opp-table-cells = <1>;
+		opp-shared;
 		opp-200000000 {
 			opp-supported-hw = <0xfb 0xffff>;
 			opp-hz = /bits/ 64 <200000000>;
@@ -177,6 +179,8 @@
 		rockchip,init-freq = <900000>;
 		opp-regulator-compatible = "regulator-fixed";
 		rockchip,skip-pvtpll;
+		#opp-table-cells = <1>;
+		opp-shared;
 		opp-200000000 {
 			opp-supported-hw = <0xfb 0xffff>;
 			opp-hz = /bits/ 64 <200000000>;
@@ -236,6 +240,8 @@
 		nvmem-cell-names = "leakage";
 		opp-regulator-compatible = "regulator-fixed";
 		rockchip,skip-pvtpll;
+		#opp-table-cells = <1>;
+		opp-shared;
 		opp-700000000 {
 			opp-hz = /bits/ 64 <700000000>;
 			opp-microvolt = <900000>;
@@ -451,6 +457,8 @@
 		nvmem-cell-names = "leakage";
 		opp-regulator-compatible = "regulator-fixed";
 		rockchip,skip-pvtpll;
+		#opp-table-cells = <1>;
+		opp-shared;
 		opp-297000000 {
 			opp-hz = /bits/ 64 <297000000>;
 			opp-microvolt = <900000>;
@@ -521,6 +529,8 @@
 		nvmem-cell-names = "leakage";
 		opp-regulator-compatible = "regulator-fixed";
 		rockchip,skip-pvtpll;
+		#opp-table-cells = <1>;
+		opp-shared;
 		opp-297000000 {
 			opp-hz = /bits/ 64 <297000000>;
 			opp-microvolt = <900000>;
