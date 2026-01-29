@@ -1063,10 +1063,8 @@ rkvenc_opp_table: rkvenc-opp-table {
 npu_opp_table: npu-opp-table {
      compatible = "operating-points-v2";
      mbist-vmin = <825000 900000 950000>;
-     nvmem-cells = <&npu_leakage>, <&core_pvtm>, <&mbist_vmin>, <&npu_opp_info>,
-                   <&specification_serial_number>, <&remark_spec_serial_number>;
-     nvmem-cell-names = "leakage", "pvtm", "mbist-vmin", "opp-info",
-                        "specification_serial_number", "remark_spec_serial_number";
+     nvmem-cells = <&npu_leakage>, <&core_pvtm>, <&mbist_vmin>, <&npu_opp_info>, <&specification_serial_number>, <&remark_spec_serial_number>;
+     nvmem-cell-names = "leakage", "pvtm", "mbist-vmin", "opp-info", "specification_serial_number", "remark_spec_serial_number";
      rockchip,supported-hw;
      rockchip,max-volt = <1000000>;
      rockchip,temp-hysteresis = <5000>;
