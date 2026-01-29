@@ -1068,6 +1068,7 @@
 
 &gpu {
 	operating-points-v2 = <&gpu_opp_table>;
+	power-off-delay-ms = <20>;
 	mali-supply = <&vdd_gpu>;
 	status = "okay";
 };
