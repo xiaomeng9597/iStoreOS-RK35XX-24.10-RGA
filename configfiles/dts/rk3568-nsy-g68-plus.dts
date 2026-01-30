@@ -364,7 +364,6 @@
 		rockchip,temp-hysteresis = <5000>;
 		rockchip,low-temp = <0>;
 		rockchip,low-temp-adjust-volt = <0 800 50000>;
-		rockchip,skip-pvtpll;
 		opp-shared;
 		opp-200000000 {
 			opp-supported-hw = <0xfb 0xffff>;
