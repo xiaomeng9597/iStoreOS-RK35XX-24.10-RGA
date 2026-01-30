@@ -23,6 +23,7 @@ CONFIG_KPROBES=y
 CONFIG_ROCKCHIP_CLK_PVTM=y
 CONFIG_ROCKCHIP_CLK_PVTPLL=y" >> target/linux/rockchip/armv8/config-6.6
 cat "${GITHUB_WORKSPACE}/configfiles/config-6.6-mtkwifi.local" >> target/linux/rockchip/armv8/config-6.6
+cat target/linux/rockchip/armv8/config-6.6
 
 
 # 集成CPU性能跑分脚本

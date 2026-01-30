@@ -22,6 +22,7 @@ echo "CONFIG_PSI=y
 CONFIG_KPROBES=y
 CONFIG_ROCKCHIP_CLK_PVTM=y
 CONFIG_ROCKCHIP_CLK_PVTPLL=y" >> target/linux/rockchip/armv8/config-6.6
+cat target/linux/rockchip/armv8/config-6.6
 
 
 # 集成CPU性能跑分脚本
