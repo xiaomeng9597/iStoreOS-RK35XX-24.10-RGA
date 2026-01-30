@@ -67,7 +67,7 @@
 		reset-names = "reset";
 		status = "disabled";
 	};
-	
+
 	gpu_opp_table: opp-table-1 {
 		compatible = "operating-points-v2";
 
