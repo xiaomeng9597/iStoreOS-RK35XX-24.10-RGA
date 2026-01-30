@@ -14,6 +14,8 @@
 #include "rk3568-ramoops.dtsi"
 #include "rk3568-vngpu.dtsi"
 
+/delete-node/ &gpu_opp_table;
+
 / {
 	model = "NSY-G68 AX3000 Router";
 	compatible = "nsy,g68-plus", "rockchip,rk3568";
@@ -351,8 +353,6 @@
 		realtek,extif2 = <0 0 1 1 1 1 1 1 2>;
 		status = "okay";
 	};
-
-     /delete-node/ &gpu_opp_table;
 
 	gpu_opp_table: opp-table-1 {
 		compatible = "operating-points-v2";
