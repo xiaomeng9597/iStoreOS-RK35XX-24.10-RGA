@@ -1128,11 +1128,23 @@
 	status = "okay";
 };
 
+&vdpu {
+	status = "okay";
+};
+
+&vdpu_mmu {
+	status = "okay";
+};
+
 &rga {
 	status = "okay";
 };
 
 &vepu {
+	status = "okay";
+};
+
+&vepu_mmu {
 	status = "okay";
 };
 
@@ -1156,9 +1168,17 @@
 					"shared_niu_a", "shared_niu_h";
 };
 
+&rkvdec_mmu {
+	status = "okay";
+};
+
 &rkvenc {
 	operating-points-v2 = <&rkvenc_opp_table>;
 	venc-supply = <&vdd_logic>;
+	status = "okay";
+};
+
+&rkvenc_mmu {
 	status = "okay";
 };
 
@@ -1298,4 +1318,24 @@
 &saradc {
 	status = "okay";
 	vref-supply = <&vcc1v8_adc>;
+};
+
+&mpp_srv {
+	status = "okay";
+};
+
+&iep {
+	status = "okay";
+};
+
+&iep_mmu {
+	status = "okay";
+};
+
+&jpegd {
+	status = "okay";
+};
+
+&jpegd_mmu {
+	status = "okay";
 };
