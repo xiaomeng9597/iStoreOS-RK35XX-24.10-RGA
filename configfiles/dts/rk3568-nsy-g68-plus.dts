@@ -369,7 +369,6 @@
 		rockchip,low-temp = <0>;
 		rockchip,low-temp-adjust-volt = <0 800 50000>;
 		#opp-table-cells = <1>;
-		opp-shared;
 
 		opp-200000000 {
 			opp-supported-hw = <0xfb 0xffff>;
@@ -425,7 +424,6 @@
 		nvmem-cells = <&log_leakage>;
 		nvmem-cell-names = "leakage";
 		#opp-table-cells = <1>;
-		opp-shared;
 
 		opp-297000000 {
 			opp-hz = /bits/ 64 <297000000>;
@@ -444,7 +442,6 @@
 		nvmem-cells = <&log_leakage>;
 		nvmem-cell-names = "leakage";
 		#opp-table-cells = <1>;
-		opp-shared;
 
 		opp-297000000 {
 			opp-hz = /bits/ 64 <297000000>;
@@ -475,7 +472,6 @@
 		rockchip,low-temp-adjust-volt = <0 1000 50000>;
 		rockchip,init-freq = <900000>;
 		#opp-table-cells = <1>;
-		opp-shared;
 
 		/* RK3568 && RK3568M npu OPPs */
 		opp-200000000 {
@@ -539,7 +535,6 @@
 
 	bus_npu_opp_table: bus-npu-opp-table {
 		compatible = "operating-points-v2";
-		opp-shared;
 		nvmem-cells = <&log_leakage>;
 		nvmem-cell-names = "leakage";
 		#opp-table-cells = <1>;
