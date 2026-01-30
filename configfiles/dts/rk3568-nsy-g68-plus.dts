@@ -241,6 +241,8 @@
 		regulator-max-microvolt = <1350000>;
 		regulator-init-microvolt = <900000>;
 		regulator-settling-time-up-us = <250>;
+		regulator-enable-ramp-delay = <300>;
+		regulator-ramp-delay = <8000>;
 		regulator-always-on;
 		regulator-boot-on;
 		vin-supply = <&vcc3v3_sys>;
@@ -256,6 +258,8 @@
 		regulator-max-microvolt = <1350000>;
 		regulator-init-microvolt = <900000>;
 		regulator-settling-time-up-us = <250>;
+		regulator-enable-ramp-delay = <300>;
+		regulator-ramp-delay = <8000>;
 		regulator-always-on;
 		regulator-boot-on;
 		vin-supply = <&vcc3v3_sys>;
@@ -271,6 +275,8 @@
 		regulator-max-microvolt = <1350000>;
 		regulator-init-microvolt = <1000000>;
 		regulator-settling-time-up-us = <250>;
+		regulator-enable-ramp-delay = <300>;
+		regulator-ramp-delay = <8000>;
 		regulator-always-on;
 		regulator-boot-on;
 		vin-supply = <&vcc3v3_sys>;
@@ -285,6 +291,7 @@
 		regulator-min-microvolt = <800000>;
 		regulator-max-microvolt = <1400000>;
 		regulator-init-microvolt = <1150000>;
+		regulator-settling-time-up-us = <250>;
 		regulator-enable-ramp-delay = <300>;
 		regulator-ramp-delay = <8000>;
 		regulator-always-on;
