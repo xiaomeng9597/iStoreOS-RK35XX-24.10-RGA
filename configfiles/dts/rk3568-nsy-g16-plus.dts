@@ -231,23 +231,16 @@
 		vin-supply = <&vcc5v0_sys>;
 	};
 
-	vcc_camera: vcc-camera-regulator {
-		compatible = "regulator-fixed";
-		gpio = <&gpio0 RK_PC1 GPIO_ACTIVE_HIGH>;
-		pinctrl-names = "default";
-		pinctrl-0 = <&camera_pwr>;
-		regulator-name = "vcc_camera";
-		enable-active-high;
-		regulator-always-on;
-		regulator-boot-on;
-	};
-
 	vdd_logic: vdd-logic {
-		compatible = "regulator-fixed";
+		compatible = "pwm-regulator";
+		rockchip,pwm_id = <2>;
+		pwms = <&pwm2 0 25000 1>;
+		pwm-dutycycle-range = <0 100>;
 		regulator-name = "vdd_logic";
-		regulator-min-microvolt = <900000>;
-		regulator-max-microvolt = <900000>;
+		regulator-min-microvolt = <500000>;
+		regulator-max-microvolt = <1350000>;
 		regulator-init-microvolt = <900000>;
+		regulator-settling-time-up-us = <250>;
 		regulator-enable-ramp-delay = <300>;
 		regulator-ramp-delay = <8000>;
 		regulator-always-on;
@@ -256,11 +249,15 @@
 	};
 
 	vdd_npu: vdd-npu {
-		compatible = "regulator-fixed";
+		compatible = "pwm-regulator";
+		rockchip,pwm_id = <1>;
+		pwms = <&pwm1 0 25000 1>;
+		pwm-dutycycle-range = <0 100>;
 		regulator-name = "vdd_npu";
-		regulator-min-microvolt = <900000>;
-		regulator-max-microvolt = <900000>;
+		regulator-min-microvolt = <500000>;
+		regulator-max-microvolt = <1350000>;
 		regulator-init-microvolt = <900000>;
+		regulator-settling-time-up-us = <250>;
 		regulator-enable-ramp-delay = <300>;
 		regulator-ramp-delay = <8000>;
 		regulator-always-on;
@@ -269,11 +266,15 @@
 	};
 
 	vdd_gpu: vdd-gpu {
-		compatible = "regulator-fixed";
+		compatible = "pwm-regulator";
+		rockchip,pwm_id = <3>;
+		pwms = <&pwm3 0 25000 1>;
+		pwm-dutycycle-range = <0 100>;
 		regulator-name = "vdd_gpu";
-		regulator-min-microvolt = <900000>;
-		regulator-max-microvolt = <900000>;
-		regulator-init-microvolt = <900000>;
+		regulator-min-microvolt = <500000>;
+		regulator-max-microvolt = <1350000>;
+		regulator-init-microvolt = <1000000>;
+		regulator-settling-time-up-us = <250>;
 		regulator-enable-ramp-delay = <300>;
 		regulator-ramp-delay = <8000>;
 		regulator-always-on;
@@ -284,12 +285,13 @@
 	vdd_cpu: vdd-cpu {
 		compatible = "pwm-regulator";
 		rockchip,pwm_id = <0>;
-		rockchip,pwm_voltage = <900000>;
 		pwms = <&pwm0 0 25000 1>;
+		pwm-dutycycle-range = <0 100>;
 		regulator-name = "vdd_cpu";
 		regulator-min-microvolt = <800000>;
 		regulator-max-microvolt = <1400000>;
 		regulator-init-microvolt = <1150000>;
+		regulator-settling-time-up-us = <250>;
 		regulator-enable-ramp-delay = <300>;
 		regulator-ramp-delay = <8000>;
 		regulator-always-on;
@@ -597,9 +599,6 @@
 		vcc3v3_vga_en: vcc3v3-vga-en {
 			rockchip,pins = <0 RK_PD5 RK_FUNC_GPIO &pcfg_pull_none>;
 		};
-		camera_pwr: camera-pwr {
-			rockchip,pins = <0 RK_PC1 RK_FUNC_GPIO &pcfg_pull_none>;
-		};
 		vcc3v3_pcie_en: vcc3v3-pcie-en {
 			rockchip,pins = <0 RK_PD4 RK_FUNC_GPIO &pcfg_pull_none>;
 		};
@@ -892,15 +891,18 @@
 };
 
 &pwm1 {
+	pinctrl-names = "default";
 	status = "okay";
 };
 
 &pwm2 {
-	status = "disabled";
+	pinctrl-names = "default";
+	status = "okay";
 };
 
 &pwm3 {
-	status = "disabled";
+	pinctrl-names = "default";
+	status = "okay";
 };
 
 &power {
@@ -909,66 +911,9 @@
 
 &gpu {
 	operating-points-v2 = <&gpu_opp_table>;
+	power-off-delay-ms = <20>;
 	mali-supply = <&vdd_gpu>;
 	status = "okay";
-};
-
-gpu_opp_table: opp-table-1 {
-     compatible = "operating-points-v2";
-     mbist-vmin = <825000 900000 950000>;
-     nvmem-cells = <&gpu_leakage>, <&core_pvtm>, <&mbist_vmin>, <&gpu_opp_info>, <&specification_serial_number>, <&remark_spec_serial_number>;
-     nvmem-cell-names = "leakage", "pvtm", "mbist-vmin", "opp-info", "specification_serial_number", "remark_spec_serial_number";
-     rockchip,supported-hw;
-     rockchip,max-volt = <900000>;
-     rockchip,temp-hysteresis = <5000>;
-     rockchip,low-temp = <0>;
-     rockchip,low-temp-adjust-volt = <0 800 50000>;
-     rockchip,pvtm-voltage-sel = <0 84000 0 84001 87000 1 87001 91000 2 91001 100000 3>;
-     rockchip,pvtm-ch = <0 5>;
-     opp-regulator-compatible = "regulator-fixed";
-     rockchip,skip-pvtpll;
-     opp-200000000 {
-         opp-supported-hw = <0xfb 0xffff>;
-         opp-hz = /bits/ 64 <200000000>;
-         opp-microvolt = <900000>;
-     };
-     opp-300000000 {
-         opp-supported-hw = <0xfb 0xffff>;
-         opp-hz = /bits/ 64 <300000000>;
-         opp-microvolt = <900000>;
-     };
-     opp-400000000 {
-         opp-supported-hw = <0xfb 0xffff>;
-         opp-hz = /bits/ 64 <400000000>;
-         opp-microvolt = <900000>;
-     };
-     opp-600000000 {
-         opp-supported-hw = <0xfb 0xffff>;
-         opp-hz = /bits/ 64 <600000000>;
-         opp-microvolt = <900000>;
-         opp-microvolt-L0 = <900000>;
-         opp-microvolt-L1 = <900000>;
-         opp-microvolt-L2 = <900000>;
-         opp-microvolt-L3 = <900000>;
-     };
-     opp-700000000 {
-         opp-supported-hw = <0xfb 0xffff>;
-         opp-hz = /bits/ 64 <700000000>;
-         opp-microvolt = <900000>;
-         opp-microvolt-L0 = <900000>;
-         opp-microvolt-L1 = <900000>;
-         opp-microvolt-L2 = <900000>;
-         opp-microvolt-L3 = <900000>;
-     };
-     opp-800000000 {
-         opp-supported-hw = <0xf9 0xffff>;
-         opp-hz = /bits/ 64 <800000000>;
-         opp-microvolt = <900000>;
-         opp-microvolt-L0 = <900000>;
-         opp-microvolt-L1 = <900000>;
-         opp-microvolt-L2 = <900000>;
-         opp-microvolt-L3 = <900000>;
-     };
 };
 
 &vpu {
@@ -1003,55 +948,10 @@ gpu_opp_table: opp-table-1 {
 					"shared_niu_a", "shared_niu_h";
 };
 
-rkvdec_opp_table: rkvdec-opp-table {
-     compatible = "operating-points-v2";
-     nvmem-cells = <&log_leakage>, <&core_pvtm>;
-     nvmem-cell-names = "leakage", "pvtm";
-     rockchip,leakage-voltage-sel = <1 80 0 81 254 1>;
-     rockchip,pvtm-voltage-sel = <0 84000 0 84001 100000 1>;
-     rockchip,pvtm-ch = <0 5>;
-     opp-regulator-compatible = "regulator-fixed";
-     rockchip,skip-pvtpll;
-     opp-297000000 {
-         opp-hz = /bits/ 64 <297000000>;
-         opp-microvolt = <900000>;
-         opp-microvolt-L0 = <900000>;
-         opp-microvolt-L1 = <900000>;
-     };
-     opp-400000000 {
-         opp-hz = /bits/ 64 <400000000>;
-         opp-microvolt = <900000>;
-     };
-};
-
 &rkvenc {
 	operating-points-v2 = <&rkvenc_opp_table>;
 	venc-supply = <&vdd_logic>;
 	status = "okay";
-};
-
-rkvenc_opp_table: rkvenc-opp-table {
-     compatible = "operating-points-v2";
-     nvmem-cells = <&core_pvtm>;
-     nvmem-cell-names = "pvtm";
-     rockchip,pvtm-voltage-sel = <0 84000 0 84001 91000 1 91001 100000 2>;
-     rockchip,pvtm-ch = <0 5>;
-     opp-regulator-compatible = "regulator-fixed";
-     rockchip,skip-pvtpll;
-     opp-297000000 {
-         opp-hz = /bits/ 64 <297000000>;
-         opp-microvolt = <900000>;
-         opp-microvolt-L0 = <900000>;
-         opp-microvolt-L1 = <900000>;
-         opp-microvolt-L2 = <900000>;
-     };
-     opp-400000000 {
-         opp-hz = /bits/ 64 <400000000>;
-         opp-microvolt = <900000>;
-         opp-microvolt-L0 = <900000>;
-         opp-microvolt-L1 = <900000>;
-         opp-microvolt-L2 = <900000>;
-     };
 };
 
 &rknpu {
@@ -1060,86 +960,12 @@ rkvenc_opp_table: rkvenc-opp-table {
 	status = "okay";
 };
 
-npu_opp_table: npu-opp-table {
-     compatible = "operating-points-v2";
-     mbist-vmin = <825000 900000 950000>;
-     nvmem-cells = <&npu_leakage>, <&core_pvtm>, <&mbist_vmin>, <&npu_opp_info>, <&specification_serial_number>, <&remark_spec_serial_number>;
-     nvmem-cell-names = "leakage", "pvtm", "mbist-vmin", "opp-info", "specification_serial_number", "remark_spec_serial_number";
-     rockchip,supported-hw;
-     rockchip,max-volt = <1000000>;
-     rockchip,temp-hysteresis = <5000>;
-     rockchip,low-temp = <0>;
-     rockchip,low-temp-adjust-volt = <0 1000 50000>;
-     rockchip,pvtm-voltage-sel = <0 84000 0 84001 87000 1 87001 91000 2 91001 100000 3>;
-     rockchip,pvtm-ch = <0 5>;
-     rockchip,init-freq = <900000>;
-     opp-regulator-compatible = "regulator-fixed";
-     rockchip,skip-pvtpll;
-     /* RK3568 && RK3568M npu OPPs */
-     opp-200000000 {
-         opp-supported-hw = <0xfb 0xffff>;
-         opp-hz = /bits/ 64 <200000000>;
-         opp-microvolt = <900000>;
-     };
-     opp-300000000 {
-         opp-supported-hw = <0xfb 0xffff>;
-         opp-hz = /bits/ 64 <297000000>;
-         opp-microvolt = <900000>;
-     };
-     opp-400000000 {
-         opp-supported-hw = <0xfb 0xffff>;
-         opp-hz = /bits/ 64 <400000000>;
-         opp-microvolt = <900000>;
-     };
-     opp-600000000 {
-         opp-supported-hw = <0xfb 0xffff>;
-         opp-hz = /bits/ 64 <600000000>;
-         opp-microvolt = <900000>;
-     };
-     opp-700000000 {
-         opp-supported-hw = <0xfb 0xffff>;
-         opp-hz = /bits/ 64 <700000000>;
-         opp-microvolt = <900000>;
-         opp-microvolt-L0 = <900000>;
-         opp-microvolt-L1 = <900000>;
-         opp-microvolt-L2 = <900000>;
-         opp-microvolt-L3 = <900000>;
-     };
-     opp-800000000 {
-         opp-supported-hw = <0xfb 0xffff>;
-         opp-hz = /bits/ 64 <800000000>;
-         opp-microvolt = <900000>;
-         opp-microvolt-L0 = <900000>;
-         opp-microvolt-L1 = <900000>;
-         opp-microvolt-L2 = <900000>;
-         opp-microvolt-L3 = <900000>;
-     };
-     opp-900000000 {
-         opp-supported-hw = <0xf9 0xffff>;
-         opp-hz = /bits/ 64 <900000000>;
-         opp-microvolt = <900000>;
-         opp-microvolt-L0 = <900000>;
-         opp-microvolt-L1 = <900000>;
-         opp-microvolt-L2 = <900000>;
-         opp-microvolt-L3 = <900000>;
-     };
-     opp-1000000000 {
-         opp-supported-hw = <0xf9 0xffff>;
-         opp-hz = /bits/ 64 <1000000000>;
-         opp-microvolt = <900000>;
-         opp-microvolt-L0 = <900000>;
-         opp-microvolt-L1 = <900000>;
-         opp-microvolt-L2 = <900000>;
-         opp-microvolt-L3 = <900000>;
-         status = "disabled";
-     };
-};
-
 &rknpu_mmu {
 	status = "okay";
 };
 
 &bus_npu {
+	operating-points-v2 = <&bus_npu_opp_table>;
 	bus-supply = <&vdd_logic>;
 	pvtm-supply = <&vdd_cpu>;
 	status = "okay";
