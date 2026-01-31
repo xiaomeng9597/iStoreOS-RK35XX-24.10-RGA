@@ -1130,18 +1130,6 @@
 	};
 };
 
-&rkvdec0 {
-	resets = <&cru SRST_A_RKVDEC0>, <&cru SRST_H_RKVDEC0>, <&cru SRST_RKVDEC0_CORE>, <&cru SRST_RKVDEC0_CA>, <&cru SRST_RKVDEC0_HEVC_CA>, <&cru SRST_A_RKVDEC0_BIU>, <&cru SRST_H_RKVDEC0_BIU>;
-	reset-names = "video_a", "video_h", "video_core", "video_cabac", "video_hevc_cabac", "shared_niu_a", "shared_niu_h";
-	status = "okay";
-};
-
-&rkvdec1 {
-	resets = <&cru SRST_A_RKVDEC1>, <&cru SRST_H_RKVDEC1>, <&cru SRST_RKVDEC1_CORE>, <&cru SRST_RKVDEC1_CA>, <&cru SRST_RKVDEC1_HEVC_CA>, <&cru SRST_A_RKVDEC1_BIU>, <&cru SRST_H_RKVDEC1_BIU>;
-	reset-names = "video_a", "video_h", "video_core", "video_cabac", "video_hevc_cabac", "shared_niu_a", "shared_niu_h";
-	status = "okay";
-};
-
 &rknpu {
     rknpu-supply = <&vdd_npu_s0>;
     mem-supply = <&vdd_npu_mem_s0>;
