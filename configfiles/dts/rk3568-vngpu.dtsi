@@ -514,8 +514,8 @@
 	rkvenc_opp_table: rkvenc-opp-table {
 		compatible = "operating-points-v2";
 
-		nvmem-cells = <&core_pvtm>;
-		nvmem-cell-names = "pvtm";
+		nvmem-cells = <&log_leakage>, <&core_pvtm>;
+		nvmem-cell-names = "leakage", "pvtm";
 		rockchip,pvtm-voltage-sel = <
 			0        84000   0
 			84001    91000   1
