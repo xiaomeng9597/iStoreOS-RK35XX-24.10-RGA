@@ -1111,13 +1111,13 @@
 	operating-points-v2 = <&rkvdec_opp_table>;
 	vdec-supply = <&vdd_logic>;
 	status = "okay";
-	
+
 	/* 补全复位信号名称 */
 	resets = <&cru SRST_A_RKVDEC>, <&cru SRST_H_RKVDEC>,
 			 <&cru SRST_RKVDEC_CA>, <&cru SRST_RKVDEC_CORE>,
 			 <&cru SRST_RKVDEC_HEVC_CA>,
 			 <&cru SRST_A_VPU_NIU>, <&cru SRST_H_VPU_NIU>;
-	
+
 	reset-names = "video_a", "video_h", "video_cabac",
 					"video_core", "video_hevc_cabac",
 					"shared_niu_a", "shared_niu_h";
