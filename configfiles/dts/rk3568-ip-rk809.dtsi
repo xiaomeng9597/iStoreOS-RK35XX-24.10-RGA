@@ -1,0 +1,33 @@
+&gpu {
+	mali-supply = <&vdd_gpu>;
+	status = "okay";
+};
+
+#ifdef DT_ENABLE_NPU
+&vdd_npu {
+	regulator-init-microvolt = <900000>;
+	regulator-always-on;
+	regulator-boot-on;
+};
+#endif
+
+&bus_npu {
+	bus-supply = <&vdd_logic>;
+	pvtm-supply = <&vdd_cpu>;
+	status = "okay";
+};
+
+&rknpu {
+	rknpu-supply = <&vdd_npu>;
+	status = "okay";
+};
+
+&rknpu_mmu {
+	status = "okay";
+};
+
+
+&rkvenc {
+	venc-supply = <&vdd_logic>;
+	status = "okay";
+};
