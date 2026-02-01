@@ -21,7 +21,6 @@ cp -a $GITHUB_WORKSPACE/configfiles/etc/* package/base-files/files/etc/
 echo "CONFIG_PSI=y
 CONFIG_KPROBES=y" >> target/linux/rockchip/armv8/config-6.6
 cat "${GITHUB_WORKSPACE}/configfiles/config-6.6-mtkwifi.local" >> target/linux/rockchip/armv8/config-6.6
-cat target/linux/rockchip/armv8/config-6.6
 
 
 # 集成CPU性能跑分脚本

@@ -20,7 +20,6 @@ cp -a $GITHUB_WORKSPACE/configfiles/etc/* package/base-files/files/etc/
 # 追加自定义内核配置项
 echo "CONFIG_PSI=y
 CONFIG_KPROBES=y" >> target/linux/rockchip/armv8/config-6.6
-cat target/linux/rockchip/armv8/config-6.6
 
 
 # 集成CPU性能跑分脚本
