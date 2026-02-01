@@ -69,6 +69,10 @@ chmod 755 package/base-files/files/etc/init.d/opwifi
 # chmod 755 package/base-files/files/etc/init.d/g68_mtkwifi
 
 
+# 为IEP节点增加256MB的预留内存
+grep -rl "rootwait\"" target/linux/rockchip/image/legacy/ | xargs sed -i 's/rw rootwait"/rw rootwait mpp_reserve=256M"/g'
+
+
 # 电工大佬的rtl8367b驱动资源包，暂时使用这样替换
 wget https://github.com/xiaomeng9597/files/releases/download/files/rtl8367b.tar.gz
 tar -xvf rtl8367b.tar.gz
