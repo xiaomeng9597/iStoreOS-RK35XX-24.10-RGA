@@ -174,7 +174,7 @@
 
 	rknpu: npu@fde40000 {
 		compatible = "rockchip,rk3568-rknpu", "rockchip,rknpu";
-		reg = <0x0 0xfde40000 0x0 0x10000>;
+		reg = <0x0 0xfde40000 0x0 0x8000>;
 		interrupts = <GIC_SPI 151 IRQ_TYPE_LEVEL_HIGH>, <GIC_SPI 150 IRQ_TYPE_LEVEL_HIGH>;
 		interrupt-names = "npu_irq", "mmu";
 		clocks = <&scmi_clk 2>, <&cru CLK_NPU>, <&cru ACLK_NPU>, <&cru HCLK_NPU>;
