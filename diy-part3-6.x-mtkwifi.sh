@@ -64,9 +64,7 @@ chmod 755 package/base-files/files/etc/init.d/swconfig_install
 [ -f "package/network/config/wifi-scripts/files/sbin/wifi" ] && rm -f package/network/config/wifi-scripts/files/sbin/wifi
 cp -f $GITHUB_WORKSPACE/configfiles/opwifi package/base-files/files/etc/init.d/opwifi
 chmod 755 package/base-files/files/etc/init.d/opwifi
-# 默认启用WiFi，系统开机后自动初始化无线功能，系统已加 “50-wifi-up” 脚本文件，这个地方注释掉
-# cp -f $GITHUB_WORKSPACE/configfiles/g68_mtkwifi package/base-files/files/etc/init.d/g68_mtkwifi
-# chmod 755 package/base-files/files/etc/init.d/g68_mtkwifi
+cp -f $GITHUB_WORKSPACE/configfiles/rc.local package/base-files/files/etc/rc.local
 
 
 # 电工大佬的rtl8367b驱动资源包，暂时使用这样替换
