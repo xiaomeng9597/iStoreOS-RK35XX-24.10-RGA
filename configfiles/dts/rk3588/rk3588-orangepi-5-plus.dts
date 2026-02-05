@@ -81,15 +81,7 @@
 	gpio-leds {
 		compatible = "gpio-leds";
 		pinctrl-names = "default";
-		pinctrl-0 = <&red_led_pin &blue_led_pin>;
-
-		red_led: red-led {
-			color = <LED_COLOR_ID_RED>;
-			function = LED_FUNCTION_INDICATOR;
-			function-enumerator = <3>;
-			gpios = <&gpio3 RK_PA5 GPIO_ACTIVE_HIGH>;
-			linux,default-trigger = "none";
-		};
+		pinctrl-0 = <&blue_led_pin &red_led_pin>;
 
 		blue_led: blue-led {
 			color = <LED_COLOR_ID_BLUE>;
@@ -97,6 +89,15 @@
 			function-enumerator = <1>;
 			gpios = <&gpio3 RK_PA6 GPIO_ACTIVE_HIGH>;
 			linux,default-trigger = "heartbeat";
+		};
+
+		red_led: red-led {
+			color = <LED_COLOR_ID_RED>;
+			function = LED_FUNCTION_INDICATOR;
+			function-enumerator = <3>;
+			gpios = <&gpio3 RK_PB1 GPIO_ACTIVE_HIGH>;
+			linux,default-trigger = "none";
+			default-state = "off";
 		};
 	};
 
@@ -594,12 +595,12 @@
 	};
 
 	leds {
-		red_led_pin: red-led-pin {
-			rockchip,pins = <3 RK_PA5 RK_FUNC_GPIO &pcfg_pull_none>;
-		};
-
 		blue_led_pin: blue-led-pin {
 			rockchip,pins = <3 RK_PA6 RK_FUNC_GPIO &pcfg_pull_up>;
+		};
+
+		red_led_pin: red-led-pin {
+			rockchip,pins = <3 RK_PB1 RK_FUNC_GPIO &pcfg_pull_up>;
 		};
 	};
 
