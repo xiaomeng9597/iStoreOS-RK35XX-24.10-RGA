@@ -1108,13 +1108,8 @@
 	status = "okay";
 };
 
-&vpu {
-	status = "okay";
-};
-
-# vdpu节点与vpu节点互斥冲突不能同时开启
 &vdpu {
-	status = "disabled";
+	status = "okay";
 };
 
 &vdpu_mmu {
